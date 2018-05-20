@@ -1,0 +1,67 @@
+{
+  "$id": "localhost:8080/api/v1/categoryRules",
+  "type": "array",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "items": {
+    "$id": "localhost:8080/api/v1/categoryRules/items",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$id": "localhost:8080/api/v1/categoryRules/items/properties/id",
+        "type": "integer",
+        "title": "The Id Schema ",
+        "default": 0,
+        "examples": [
+          0
+        ]
+      },
+      "description": {
+        "$id": "localhost:8080/api/v1/categoryRules/items/properties/description",
+        "type": "string",
+        "title": "The Description Schema ",
+        "default": "",
+        "examples": [
+          ""
+        ]
+      },
+      "iBAN": {
+        "$id": "localhost:8080/api/v1/categoryRules/items/properties/iBAN",
+        "type": "string",
+        "title": "The Iban Schema ",
+        "default": "",
+        "examples": [
+          "testIBAN"
+        ]
+      },
+      "type": {
+        "$id": "localhost:8080/api/v1/categoryRules/items/properties/type",
+        "type": "string",
+        "title": "The Type Schema ",
+        "default": "",
+        "enum" : ["deposit", "withdrawal"],
+        "examples": [
+          "deposit", "withdrawal"
+        ]
+      },
+      "category_id": {
+        "$id": "localhost:8080/api/v1/categoryRules/items/properties/category_id",
+        "type": "integer",
+        "title": "The Category_id Schema ",
+        "default": 0,
+        "examples": [
+          0
+        ]
+      },
+      "applyOnHistory": {
+        "$id": "localhost:8080/api/v1/categoryRules/items/properties/applyOnHistory",
+        "type": "boolean",
+        "title": "The Applyonhistory Schema ",
+        "default": false,
+        "examples": [
+          false
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$id": "localhost:8080/api/v1/categoryRules/{id}",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "id": {
+      "$id": "/properties/id",
+      "type": "integer",
+      "title": "The Id Schema ",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "description": {
+      "$id": "/properties/description",
+      "type": "string",
+      "title": "The Description Schema ",
+      "default": "",
+      "examples": [
+        "University of Twente"
+      ]
+    },
+    "iBAN": {
+      "$id": "/properties/iBAN",
+      "type": "string",
+      "title": "The Iban Schema ",
+      "default": "",
+      "examples": [
+        "NL39RABO0300065264"
+      ]
+    },
+    "type": {
+      "$id": "/properties/type",
+      "type": "string",
+      "title": "The Type Schema ",
+      "default": "",
+      "enum" : ["deposit", "withdrawal"],
+      "examples": [
+        "deposit"
+      ]
+    },
+    "category_id": {
+      "$id": "/properties/category_id",
+      "type": "integer",
+      "title": "The Category_id Schema ",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "applyOnHistory": {
+      "$id": "/properties/applyOnHistory",
+      "type": "boolean",
+      "title": "The Applyonhistory Schema ",
+      "default": false,
+      "examples": [
+        true
+      ]
+    }
+  }
+}

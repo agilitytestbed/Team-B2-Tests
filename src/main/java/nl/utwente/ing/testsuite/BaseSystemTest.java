@@ -5,8 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -42,7 +40,7 @@ public class BaseSystemTest {
 		extract().
 				response().jsonPath().getString("id");
 		
-		// Add a category rule
+		// Add a category
 		JSONObject categoryRule = new JSONObject()
 				.put("description", "")
 				.put("iBAN", "testIBAN")

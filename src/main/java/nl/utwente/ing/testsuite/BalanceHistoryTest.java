@@ -23,6 +23,7 @@ import nl.utwente.ing.model.CandleStick;
 
 public class BalanceHistoryTest {
 	private static String sessionID;
+	private static final double EPSILON = 0.005;
 	
 	@BeforeClass
 	public static void before() {
@@ -487,7 +488,7 @@ public class BalanceHistoryTest {
 			duration = System.nanoTime() - start;
 			avg += (duration/(Math.pow(10, 6)*nrTrials));
 		}
-		assertTrue((long)avg < 400);
+		assertTrue((long)avg < 1000);
 	}
 	
 	
@@ -555,11 +556,11 @@ public class BalanceHistoryTest {
 	}
 	
 	private static void checkCandleStick(CandleStick c, double open, double volume, double close, double high, double low) {
-		assertTrue(c.getOpen() == open);
-		assertTrue(c.getVolume() == volume);
-		assertTrue(c.getClose() == close);
-		assertTrue(c.getHigh() == high);
-		assertTrue(c.getLow() == low);
+		assertEquals(c.getOpen(), open, EPSILON);
+		assertEquals(c.getVolume(), volume, EPSILON);
+		assertEquals(c.getClose(), close, EPSILON);
+		assertEquals(c.getHigh(), high, EPSILON);
+		assertEquals(c.getLow(), low, EPSILON);
 	}
 	
 	private static String getNewSession() {

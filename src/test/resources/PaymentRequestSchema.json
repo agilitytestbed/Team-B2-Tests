@@ -1,0 +1,150 @@
+{
+  "$id": "localhost:8080/api/v1/paymentRequests",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "id": {
+      "$id": "/properties/id",
+      "type": "integer",
+      "title": "The Id Schema ",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "description": {
+      "$id": "/properties/description",
+      "type": "string",
+      "title": "The Description Schema ",
+      "default": "",
+      "examples": [
+        "Payback fo rlunch"
+      ]
+    },
+    "due-date": {
+      "$id": "/properties/due-date",
+      "type": "string",
+      "title": "The Due-date Schema ",
+      "default": "",
+      "examples": [
+        "2018-07-07T14:41:44.511Z"
+      ]
+    },
+    "amount": {
+      "$id": "/properties/amount",
+      "type": "number",
+      "title": "The Amount Schema ",
+      "default": 0,
+      "examples": [
+        213.0399932861328
+      ]
+    },
+    "number-of-requests": {
+      "$id": "/properties/number-of-requests",
+      "type": "integer",
+      "title": "The Number-of-requests Schema ",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "filled": {
+      "$id": "/properties/filled",
+      "type": "boolean",
+      "title": "The Filled Schema ",
+      "default": false,
+      "examples": [
+        true
+      ]
+    },
+    "transactions": {
+      "$id": "/properties/transactions",
+      "type": "array",
+      "items": {
+        "$id": "/properties/transactions/items",
+        "type": "object",
+        "properties": {
+          "id": {
+            "$id": "/properties/transactions/items/properties/id",
+            "type": "integer",
+            "title": "The Id Schema ",
+            "default": 0,
+            "examples": [
+              38
+            ]
+          },
+          "date": {
+            "$id": "/properties/transactions/items/properties/date",
+            "type": "string",
+            "title": "The Date Schema ",
+            "default": "",
+            "examples": [
+              "2018-07-07T14:41:44.511Z"
+            ]
+          },
+          "amount": {
+            "$id": "/properties/transactions/items/properties/amount",
+            "type": "number",
+            "title": "The Amount Schema ",
+            "default": 0,
+            "examples": [
+              213.0399932861328
+            ]
+          },
+          "description": {
+            "$id": "/properties/transactions/items/properties/description",
+            "type": "string",
+            "title": "The Description Schema ",
+            "default": "",
+            "examples": [
+              "Salary"
+            ]
+          },
+          "externalIBAN": {
+            "$id": "/properties/transactions/items/properties/externalIBAN",
+            "type": "string",
+            "title": "The Externaliban Schema ",
+            "default": "",
+            "examples": [
+              "NL39RABO0300065264"
+            ]
+          },
+          "type": {
+            "$id": "/properties/transactions/items/properties/type",
+            "type": "string",
+            "title": "The Type Schema ",
+            "default": "",
+            "examples": [
+              "deposit"
+            ]
+          },
+          "category": {
+            "$id": "/properties/transactions/items/properties/category",
+            "type": "object",
+            "properties": {
+              "id": {
+                "$id": "/properties/transactions/items/properties/category/properties/id",
+                "type": "integer",
+                "title": "The Id Schema ",
+                "default": 0,
+                "examples": [
+                  25
+                ]
+              },
+              "name": {
+                "$id": "/properties/transactions/items/properties/category/properties/name",
+                "type": "string",
+                "title": "The Name Schema ",
+                "default": "",
+                "examples": [
+                  "groceries"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

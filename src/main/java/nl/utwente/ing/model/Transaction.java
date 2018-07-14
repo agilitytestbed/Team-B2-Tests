@@ -3,6 +3,7 @@ package nl.utwente.ing.model;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -121,5 +122,26 @@ public class Transaction {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public boolean equals(Transaction t) {
+		if (t.getAmount() == amount && t.CategoryID() == CategoryID() && t.getDate().equals(date) 
+				&& t.getDescription().equals(description) && t.getExternalIBAN().equals(externalIBAN)
+				&& t.getType().equals(type)) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return new JSONObject()
+				.put("id", id)
+				.put("amount", amount)
+				.put("categoryID", CategoryID())
+				.put("date", date)
+				.put("description", description)
+				.put("externalIBAN", externalIBAN)
+				.put("type", type).toString();
 	}
 }

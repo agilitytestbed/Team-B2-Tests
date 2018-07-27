@@ -1,5 +1,7 @@
 package nl.utwente.ing.model;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -56,6 +58,12 @@ public class Transaction {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public void setDate(Instant i) {
+		this.date =  DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mmX")
+                .withZone(ZoneOffset.UTC)
+                .format(i);
 	}
 
 	public Category getCategory() {

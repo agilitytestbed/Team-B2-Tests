@@ -51,15 +51,19 @@ public class SavingGoalsTest {
 				response().jsonPath().getString("id");
 	}
 	
-	private static void postObject(JSONObject object, String uri, String session) {
-		given().
+	private static String postObject(JSONObject object, String uri, String session) {
+		Response response  = given().
 			header("X-session-ID", session).
 			header("Content-Type", "application/JSON").
 			body(object.toString()).
 		when().
-			post("/" + uri).
-		then().
+			post("/" + uri);
+		
+		response.then().
 			assertThat().statusCode(201);
+		
+		return response.then().extract().
+				response().jsonPath().getString("id");
 	}
 	
 	private static double getSavingGoalBalance(String session, int index) {
@@ -86,8 +90,9 @@ public class SavingGoalsTest {
 	 * @param desiredIncrease how much the savingGoal's balance should increase
 	 * @param sessionId the id of the session the scenario is operating in
 	 * @param index the index of the saving goal in the list that is returned on a GET request
+	 * @return id of the saving goal posted
 	 */
-	public static void testScenario(double initialBalance, double minBalance, double savePerMonth, double goal, double desiredIncrease, String sessionId, int index) {
+	public static String testScenario(double initialBalance, double minBalance, double savePerMonth, double goal, double desiredIncrease, String sessionId, int index) {
 		JSONObject initialTransaction = new JSONObject()
 				.put("date", "2018-02-01T00:00Z")
 				.put("amount",initialBalance)
@@ -102,7 +107,7 @@ public class SavingGoalsTest {
 				.put("savePerMonth", savePerMonth)
 				.put("minBalanceRequired", minBalance);
 		
-		postObject(savingGoal, "savingGoals", sessionId);
+		String savingGoalId = postObject(savingGoal, "savingGoals", sessionId);
 		
 		JSONObject secondTransaction = new JSONObject()
 				.put("date", "2018-03-01T00:00Z")
@@ -113,6 +118,7 @@ public class SavingGoalsTest {
 		postObject(secondTransaction, "transactions", sessionId);
 		
 		assertEquals(getSavingGoalBalance(sessionId, index), desiredIncrease, EPSILON);
+		return savingGoalId;
 	}
 	
 	private static void checkCandleStick(CandleStick c, double open, double volume, double close, double high, double low) {
@@ -537,7 +543,7 @@ public class SavingGoalsTest {
 	public void testBalanceHistoryTransactions() {
 		String testSessionId = getNewSession();
 		
-		testScenario(1000, 1000, 400, 400, 400, testSessionId, 0);
+		String savingGoalId = testScenario(1000, 1000, 400, 400, 400, testSessionId, 0);
 		
 		Response candlestickResponse = given().
 				contentType("application/json").
@@ -552,6 +558,32 @@ public class SavingGoalsTest {
 		double close = -400.0;
 		double high = 1000.0;
 		double low = -400.0;
+		
+		checkCandleStick(candlestickNow, open, volume, close, high, low);
+		
+		// Delete the saving goal
+
+		given().
+			contentType("application/json").
+			header("X-session-ID", testSessionId).
+		when().
+			delete("/savingGoals/" + savingGoalId).
+		then().
+			assertThat().statusCode(204);
+		
+		candlestickResponse = given().
+				contentType("application/json").
+				header("X-session-ID", testSessionId).
+			when().
+				get("/balance/history?interval=year&intervals=1");
+		candlestickList = candlestickResponse.as(CandleStick[].class);
+		candlestickNow = candlestickList[0];
+		
+		open = 0.0;
+		volume = 2800.0;
+		close = 0.0;
+		high = 1000.0;
+		low = -400.0;
 		
 		checkCandleStick(candlestickNow, open, volume, close, high, low);
 	}

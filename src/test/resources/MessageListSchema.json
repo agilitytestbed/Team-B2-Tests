@@ -1,0 +1,57 @@
+{
+  "$id": "localhost:8080/api/v1/messages",
+  "type": "array",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "items": {
+    "$id": "localhost:8080/api/v1/messages/items",
+    "type": "object",
+    "properties": {
+      "id": {
+        "$id": "localhost:8080/api/v1/messages/items/properties/id",
+        "type": "integer",
+        "title": "The Id Schema ",
+        "default": 0,
+        "examples": [
+          0
+        ]
+      },
+      "message": {
+        "$id": "localhost:8080/api/v1/messages/items/properties/message",
+        "type": "string",
+        "title": "The Message Schema ",
+        "default": "",
+        "examples": [
+          "Balance drop below zero"
+        ]
+      },
+      "date": {
+        "$id": "localhost:8080/api/v1/messages/items/properties/date",
+        "type": "string",
+        "title": "The Date Schema ",
+        "default": "",
+        "examples": [
+          "2018-07-28T11:31:45.710Z"
+        ]
+      },
+      "read": {
+        "$id": "localhost:8080/api/v1/messages/items/properties/read",
+        "type": "boolean",
+        "title": "The Read Schema ",
+        "default": false,
+        "examples": [
+          true
+        ]
+      },
+      "type": {
+        "$id": "localhost:8080/api/v1/messages/items/properties/type",
+        "type": "string",
+        "title": "The Type Schema ",
+        "default": "",
+        "enum": [
+          "info","warning"
+        ]
+      }
+    }
+  }
+}

@@ -298,19 +298,18 @@ public class MessageTest {
 				.put("date", getDateString(transactionTime.toInstant()));
 		
 		postObject(transaction, "transactions", testSessionId);
-		String msg = "Your balance reached a new high of 50.0!";
-		Message m = new Message(0, msg, transactionTime.toEpochSecond(), false, "info");
-		messages.add(m);
+
 		checkGetRequest(messages, testSessionId);
 		
 		transactionTime = transactionTime.plus(1, ChronoUnit.MONTHS);
 		transaction
 				.put("amount", 70.0)
 				.put("date", getDateString(transactionTime.toInstant()));
-		// There is an unread message indicating balance high, so no new message should be added
+		// The balance should now be 100, so a new message must be added
 		postObject(transaction, "transactions", testSessionId);
-		msg = "Your balance reached a new high of 100.0!";
-		m = new Message(0, msg, transactionTime.toEpochSecond(), false, "info");
+		String msg = "Your balance reached a new high of 100.0!";
+		Message m = new Message(0, msg, transactionTime.toEpochSecond(), false, "info");
+		messages.add(m);
 		checkGetRequest(messages, testSessionId);
 		
 	}

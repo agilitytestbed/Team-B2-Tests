@@ -241,10 +241,11 @@ public class MessageRuleTest {
 		/*
 		Below we test a few scenarios:
 			- The threshold is not reached
-			- The threshold is reached by a transaction 29 days after the first transaction
-			- The threshold is reached by a transaction 30 days after the first transaction
-			- The threshold is reached by a transaction 61 days after the first transaction
-			- The threshold is reached by a transaction 60 days after the first transaction
+			- The threshold of 200 is reached by a transaction 29 days after the first transaction
+			- The thresholds of 200 and 300 are reached by a transaction 30 days after the first transaction
+			- The threshold of 200 is reached by a transaction 61 days after the first transaction
+			- The threshold is not reached by a transaction 60 days after the first transaction because the transaction
+			is not in the future.
 
 		For simplicity, there is a category rule to automatically add the category to the transactions.
 
@@ -280,7 +281,14 @@ public class MessageRuleTest {
 												.put("value", 200.0)
 												.put("category_id", categoryId);
 		postObject(messageRule, "messageRules", testSessionId);
-		
+
+		// Add a second message rule with a different type and value
+		messageRule
+				.put("type", "warning")
+				.put("value", 300.0);
+		postObject(messageRule, "messageRules", testSessionId);
+
+
 		// There should be no new messages
 		checkGetRequest(messages, testSessionId);
 		
@@ -315,6 +323,10 @@ public class MessageRuleTest {
 				.put("date", getDateString(now.plus(30, ChronoUnit.DAYS)));
 		postObject(transaction, "transactions", testSessionId);
 		m = new Message(0, msg, now.plus(30, ChronoUnit.DAYS).getEpochSecond(), false, "info");
+		messages.add(m);
+
+		msg = "Spending exceeded threshold of 300.0 on category with id " + categoryId + ".";
+		m = new Message(0, msg, now.plus(30, ChronoUnit.DAYS).getEpochSecond(), false, "warning");
 		messages.add(m);
 
 		// There should a new message that the threshold has been crossed

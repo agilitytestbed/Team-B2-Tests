@@ -5,7 +5,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "properties": {
     "id": {
-      "$id": "/properties/id",
+      "$id": "localhost:8080/api/v1/messageRules/properties/id",
       "type": "integer",
       "title": "The Id Schema ",
       "default": 0,
@@ -14,7 +14,7 @@
       ]
     },
     "type": {
-      "$id": "/properties/type",
+      "$id": "localhost:8080/api/v1/messageRules/properties/type",
       "type": "string",
       "title": "The Type Schema ",
       "default": "",
@@ -24,16 +24,16 @@
       ]
     },
     "value": {
-      "$id": "/properties/value",
-      "type": "integer",
+      "$id": "localhost:8080/api/v1/messageRules/properties/value",
+      "type": "number",
       "title": "The Value Schema ",
-      "default": 0,
+      "default": 0.0,
       "examples": [
-        0
+        0.0
       ]
     },
     "category_id": {
-      "$id": "/properties/category_id",
+      "$id": "localhost:8080/api/v1/messageRules/properties/category_id",
       "type": "integer",
       "title": "The Category_id Schema ",
       "default": 0,

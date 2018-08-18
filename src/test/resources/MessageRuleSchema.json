@@ -1,0 +1,45 @@
+{
+  "$id": "localhost:8080/api/v1/messageRules",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "id": {
+      "$id": "/properties/id",
+      "type": "integer",
+      "title": "The Id Schema ",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "type": {
+      "$id": "/properties/type",
+      "type": "string",
+      "title": "The Type Schema ",
+      "default": "",
+      "enum": [
+        "info",
+        "warning"
+      ]
+    },
+    "value": {
+      "$id": "/properties/value",
+      "type": "integer",
+      "title": "The Value Schema ",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "category_id": {
+      "$id": "/properties/category_id",
+      "type": "integer",
+      "title": "The Category_id Schema ",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    }
+  }
+}

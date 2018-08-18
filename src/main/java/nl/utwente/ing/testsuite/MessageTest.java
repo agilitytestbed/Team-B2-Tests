@@ -1,8 +1,15 @@
 package nl.utwente.ing.testsuite;
 
-import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.response.Response;
+import nl.utwente.ing.model.Message;
+import nl.utwente.ing.model.PaymentRequest;
+import nl.utwente.ing.model.SavingGoal;
+import org.json.JSONObject;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -13,17 +20,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.module.jsv.JsonSchemaValidator;
-import io.restassured.response.Response;
-import nl.utwente.ing.model.Message;
-import nl.utwente.ing.model.PaymentRequest;
-import nl.utwente.ing.model.SavingGoal;
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MessageTest {
 	private static String testSessionId;

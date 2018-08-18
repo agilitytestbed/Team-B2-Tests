@@ -1,14 +1,6 @@
 package nl.utwente.ing.testsuite;
 
 
-import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.json.JSONObject;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -16,6 +8,13 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import nl.utwente.ing.model.CategoryRule;
 import nl.utwente.ing.model.Transaction;
+import org.json.JSONObject;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CategoryRuleTest {
 	private static String sessionID;

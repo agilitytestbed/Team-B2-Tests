@@ -1,8 +1,11 @@
 package nl.utwente.ing.testsuite;
-import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.json.JSONObject;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.time.Instant;
 import java.time.ZoneOffset;
@@ -11,14 +14,8 @@ import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.json.JSONObject;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.*;
 
 public class BaseSystemTest {
 	private static String sessionID;
